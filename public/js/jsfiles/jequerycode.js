@@ -1,0 +1,15 @@
+$(document).ready(function(){
+    $('.btn1').click(function(){
+        $('.Toggle').toggle(3000).fade();
+    })
+    });
+$(document).ready(function(){
+    $('.symptoms').mouseenter(function(){
+        $('.block1').toggle(3000).fadeup();
+    })
+});
+$(document).ready(function(){
+    $('.prevention').mouseenter(function(){
+        $('.block2').toggle(3000).fadeup();
+    })
+});
