@@ -20,8 +20,8 @@ $(document).ready(function(){
         // get the data
         var id = el.data('item-id');
         var name = row.children(".name").text();
-        var description = row.children(".email").text();
-        var comp = row.children(".message").text();
+        var email = row.children(".email").text();
+        var message = row.children(".message").text();
 
 
         var action= $("#indexLink").val()+'/crudpage/'+id;

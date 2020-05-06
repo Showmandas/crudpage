@@ -17,5 +17,8 @@
     <script src="{{asset('js/jsfiles/jquery.js')}}"></script>
     <script src="{{asset('js/jsfiles/bootstrap.js')}}"></script>
 
+    <script src="{{asset('js/jsfiles/scriptcode.js')}}"></script>
+    <script src="{{asset('js/jsfiles/codejs.js')}}"></script>
+
 </body>
 </html>

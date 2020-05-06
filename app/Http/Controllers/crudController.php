@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\crud;
+use App\Crud;
 
 class crudController extends Controller
 {
@@ -14,7 +14,7 @@ class crudController extends Controller
      */
     public function index()
     {
-        $crud=crud::all();
+        $crud=Crud::all();
         return view('layout.crudpage',compact('crud'));
     }
 
@@ -52,7 +52,7 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Crud $updata)
     {
         //
     }
@@ -63,7 +63,7 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Crud $updata)
     {
         //
     }
@@ -75,13 +75,14 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,crud $crud)
+    public function update(Request $request,Crud $updata)
     {
-        $crud->name=$request->name;
-        $crud->email=$request->email;
-        $crud->message=$request->message;
-        $crud->save();
-        return ['success'=>true,'message'=>'data updated successfully'];
+        $updata->name=$request->name;
+        $updata->email=$request->email;
+        $updata->message=$request->message;
+
+        $updata->save();
+        return back();
     }
 
     /**
@@ -90,9 +91,9 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(crud $crud,$id)
+    public function destroy(Crud $updata)
     {
-        $crud->delete();
+        $updata->delete();
         return back();
     }
 }
