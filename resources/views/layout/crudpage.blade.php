@@ -102,7 +102,7 @@
 
 
                                 <td class="align-middle">
-                                    <button type="button" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
+                                    <button type="submit" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
                                     <form method="POST" action="{{ route('crudpage.destroy',$cruds->id )}}" id="delete-form-{{ $cruds->id }}" style="display:none;">

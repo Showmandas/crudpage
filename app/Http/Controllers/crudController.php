@@ -75,13 +75,13 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Crud $updata)
+    public function update(Request $request,Crud $crud)
     {
-        $updata->name=$request->name;
-        $updata->email=$request->email;
-        $updata->message=$request->message;
+        $crud->name=$request->name;
+        $crud->email=$request->email;
+        $crud->message=$request->message;
 
-        $updata->save();
+        $crud->save();
         return back();
     }
 
@@ -91,9 +91,9 @@ class crudController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Crud $updata)
+    public function destroy(Crud $crud)
     {
-        $updata->delete();
+        $crud->delete();
         return back();
     }
 }
