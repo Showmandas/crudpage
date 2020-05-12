@@ -17,7 +17,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('crudpage.store') }}">
+                <form method="POST" action="{{ url('store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -105,7 +105,7 @@
                                     <button type="button" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('crudpage.destroy',  $cruds->id )}} " id="delete-form-{{ $cruds->id }}" style="display:none; ">
+                                    <form method="POST" action="{{ url('delete',$cruds->id )}}" id="delete-form-{{ $cruds->id }}" style="display:none;">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -151,7 +151,7 @@
                     </button>
                 </div>
                 <div class="modal-body" id="attachment-body-content">
-                    <form id="category-edit-form" class="form-horizontal" method="POST" action="">
+                    <form id="category-edit-form" class="form-horizontal" method="POST" action="{{url('edit'.$cruds->id)}}">
                     @csrf
                         @method('put')
 

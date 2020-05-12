@@ -16,5 +16,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('crudpage','crudController');
+Route::get('crudpage','crudController@index');
+Route::post('store','crudController@store');
+
+Route::post('/edit/{id}','crudController@update');
+Route::post('/delete/{id}','crudController@delete');
+
 
