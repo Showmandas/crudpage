@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCruddataTable extends Migration
+class CreateMedichinesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,16 @@ class CreateCruddataTable extends Migration
      */
     public function up()
     {
-        Schema::create('Medicine_categories', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->nullable();
+        Schema::create('medichines', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('medicine_category_id');
+            $table->string('name');
             $table->string('email')->nullable();
             $table->string('message')->nullable();
+
             $table->timestamps();
+
+
         });
     }
 
@@ -29,6 +33,6 @@ class CreateCruddataTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cruddata');
+        Schema::dropIfExists('medichines');
     }
 }

@@ -1,5 +1,5 @@
-@extends('layout.file')
-
+@extends('layout.layouts')
+@section('content')
 
 
 
@@ -11,13 +11,13 @@
 
             <div class="card-header py-3 bg-abasas-dark">
                 <nav class="navbar navbar-dark ">
-                    <a class="navbar-brand"> CRUD Page</a>
+                    <a class="navbar-brand"> New Category</a>
 
                 </nav>
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('crudpage.store') }}">
+                <form method="POST" action="{{ route('medicine-categories.store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -53,7 +53,7 @@
 
             <div class="card-header py-3 bg-abasas-dark">
                 <nav class="navbar navbar-dark ">
-                    <a class="navbar-brand"> List</a>
+                    <a class="navbar-brand"> Category List</a>
 
                 </nav>
             </div>
@@ -89,23 +89,24 @@
                         <tbody>
 
                         <?php $i = 1; ?>
-                        @foreach ($crud as $cruds)
-                            <?php $id = $cruds->id; ?>
+                        @foreach ($categories as $category)
+                            <?php $id = $category->id; ?>
                             <tr class="data-row">
                                 <td class="iteration">{{$i++}}</td>
-                                <td class="  word-break name">{{$cruds->name}}</td>
-                                <td class=" word-break email">{{$cruds->email}}</td>
-                                <td class=" word-break message">{{$cruds->message}}</td>
+                                <td class="  word-break name">{{$category->name}}</td>
+                                <td class=" word-break email">{{$category->email}}</td>
+                                <td class=" word-break message">{{$category->message}}</td>
 
 
 
+                                <td>{{$category->medichines->count()}}</td>
 
 
                                 <td class="align-middle">
-                                    <button type="submit" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
+                                    <button type="button" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('crudpage.destroy',$cruds->id )}}" id="delete-form-{{ $cruds->id }}" style="display:none;">
+                                    <form method="POST" action="{{ route('medicine-categories.destroy',  $category->id )}} " id="delete-form-{{ $category->id }}" style="display:none; ">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -114,7 +115,7 @@
 
 
                                     <button onclick="if(confirm('are you sure to delete this')){
-                                        document.getElementById('delete-form-{{ $cruds->id }}').submit();
+                                        document.getElementById('delete-form-{{ $category->id }}').submit();
                                         }
                                         else{
                                         event.preventDefault();
@@ -146,12 +147,12 @@
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-dark" id="edit-modal-label ">Edit Data</h5>
+                    <h5 class="modal-title text-dark" id="edit-modal-label ">Edit Category</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body" id="attachment-body-content">
-                    <form id="category-edit-form" class="form-horizontal" method="POST" action="">
+                    <form id="category-edit-form" class="form-horizontal" method="POST">
                     @csrf
                         @method('put')
 
@@ -169,20 +170,20 @@
                             <input type="text" name="name" class="form-control" id="modal-input-name" required autofocus>
                         </div>
                         <!-- /name -->
-                        <!-- description -->
+                        <!-- email -->
                         <div class="form-group">
                             <label class="col-form-label" for="modal-input-email">Email</label>
                             <input type="text" name="email" class="form-control" id="modal-input-email" required>
                         </div>
-                           <!-- /description -->
-                           
+                           <!-- /email-->
+                           <!-- message -->
                         <div class="form-group">
                             <label class="col-form-label" for="modal-input-message">Message</label>
                             <input type="text" name="message" class="form-control" id="modal-input-message" required>
                         </div>
                         <div class="form-group">
 
-                            <input type="submit" value="submit" class="form-control btn btn-success">
+                            <input type="submit" value="Update" class="form-control btn btn-success">
                         </div>
                      
 
@@ -199,4 +200,52 @@
     <!-- /Attachment Modal -->
 
 
+<script>
+    $(document).ready(function(){
 
+$(document).on('click', "#category-edit-item", function() {
+
+
+
+    $(this).addClass('edit-item-trigger-clicked'); //useful for identifying which trigger was clicked and consequently grab data from the correct row and not the wrong one.
+
+    var options = {
+      'backdrop': 'static'
+    };
+    $('#category-edit-modal').modal(options)
+  });
+
+  // on modal show
+  $('#category-edit-modal').on('show.bs.modal', function() {
+    var el = $(".edit-item-trigger-clicked"); // See how its usefull right here?
+    var row = el.closest(".data-row");
+
+    // get the data
+    var id = el.data("item-id");
+    var name = row.children(".name").text();
+    var email = row.children(".email").text();
+    var message = row.children(".message").text();
+
+
+    var action= $("#indexLink").val()+'/medicine-categories/'+id;
+    $("#category-edit-form").attr('action',action);
+
+    // fill the data in the input fields
+    $("#modal-input-id").val(id);
+    $("#modal-input-name").val(name);
+    $("#modal-input-email").val(email);
+    $("#modal-input-message").val(message);
+
+
+  });
+
+  // on modal hide
+  $('#category-edit-modal').on('hide.bs.modal', function() {
+    $('.edit-item-trigger-clicked').removeClass('edit-item-trigger-clicked')
+    $("#category-edit-form").trigger("reset");
+  });
+
+}) ;
+
+</script>
+@endsection

@@ -16,6 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('crudpage','crudController');
+Route::get("/", "UserController@index")->name('index');
+
+Route::resource('medicine-categories','MedicineCategoryController');
+Route::resource('medichines','MedicineController');
+
+
 
 
