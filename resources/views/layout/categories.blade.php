@@ -37,6 +37,12 @@
                         </div>
 
                         <div class="col-auto">
+
+                            <span class="text-dark pl-2">Phone</span>
+                            <input type="text" name="phone" size="55" class="form-control mb-2" id="inlineFormInput" required >
+                        </div>
+
+                        <div class="col-auto">
                             <button type="submit" class="btn btn-primary mt-3">Save</button>
                         </div>
 
@@ -68,7 +74,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Message</th>
-                            
+                            <th>Phone</th>
+
                             <th>Action</th>
 
                         </tr>
@@ -80,7 +87,8 @@
                             <th>Name</th>
                             <th>Email</th>
                             <th>Message</th>
-                            
+                            <th>Phone</th>
+
                             <th>Action</th>
 
                         </tr>
@@ -96,6 +104,7 @@
                                 <td class="  word-break name">{{$category->name}}</td>
                                 <td class=" word-break email">{{$category->email}}</td>
                                 <td class=" word-break message">{{$category->message}}</td>
+                                <td class=" word-break phone">{{$category->phone}}</td>
 
 
 
@@ -181,6 +190,12 @@
                             <label class="col-form-label" for="modal-input-message">Message</label>
                             <input type="text" name="message" class="form-control" id="modal-input-message" required>
                         </div>
+
+                        <div class="col-auto">
+                        <label class="col-form-label" for="modal-input-phone">Phone</label>
+
+                            <input type="text" name="phone" size="55" class="form-control" id="modal-input-phone" required >
+                        </div>
                         <div class="form-group">
 
                             <input type="submit" value="Update" class="form-control btn btn-success">
@@ -225,6 +240,8 @@ $(document).on('click', "#category-edit-item", function() {
     var name = row.children(".name").text();
     var email = row.children(".email").text();
     var message = row.children(".message").text();
+    var phone = row.children(".phone").text();
+
 
 
     var action= $("#indexLink").val()+'/medicine-categories/'+id;
@@ -235,6 +252,7 @@ $(document).on('click', "#category-edit-item", function() {
     $("#modal-input-name").val(name);
     $("#modal-input-email").val(email);
     $("#modal-input-message").val(message);
+    $("#modal-input-phone").val(phone);
 
 
   });

@@ -47,6 +47,7 @@ class MedichineController extends Controller
        $medichine->name= $request->name;
         $medichine->email = $request->email;
         $medichine->message = $request->message;
+        $medichine->phone = $request->phone;
 
         $medichine->medicine_category_id = $request->medicine_category_id;
        $medichine->save();
@@ -90,6 +91,8 @@ class MedichineController extends Controller
         $medichine->email = $request->email;
         $medichine->message = $request->message;
         $medichine->medicine_category_id = $request->medicine_category_id;
+        $medichine->phone = $request->phone;
+
         $medichine->save();
          return back();
     }

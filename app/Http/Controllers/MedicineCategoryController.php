@@ -51,6 +51,8 @@ class MedicineCategoryController extends Controller
         $medicine->name=$request->name;
         $medicine->email=$request->email;
         $medicine->message=$request->message;
+        $medicine->phone=$request->phone;
+
         $medicine->save();
         return back();
     }
@@ -89,6 +91,7 @@ class MedicineCategoryController extends Controller
         $medichineCategory->name= $request->name;
         $medichineCategory->email = $request->email;
     $medichineCategory->message = $request->message;
+    $medichineCategory->phone = $request->phone;
 
         $medichineCategory->save();
         return back();
