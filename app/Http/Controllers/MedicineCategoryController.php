@@ -1,10 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Controller\Controller;
 
-use Illuminate\Http\Request;
 use App\MedicineCategory;
-
+use Illuminate\Http\Request;
 
 class MedicineCategoryController extends Controller
 {
@@ -17,7 +16,7 @@ class MedicineCategoryController extends Controller
     {
         $categories = MedicineCategory::all();
 
-       return view('layout.categories',compact('categories'));
+       return view('medichine.crudpage',compact('categories'));
 
     }
 
@@ -49,10 +48,8 @@ class MedicineCategoryController extends Controller
     {
         $medicine= new MedicineCategory();
         $medicine->name=$request->name;
-        $medicine->email=$request->email;
-        $medicine->message=$request->message;
-        $medicine->phone=$request->phone;
-
+        $medicine->description=$request->description;
+        $medicine->reaction=$request->reaction;
         $medicine->save();
         return back();
     }
@@ -60,7 +57,7 @@ class MedicineCategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\MedicineCategory  $medichineCategory
+     * @param  \App\MedichineCategory  $medichineCategory
      * @return \Illuminate\Http\Response
      */
     public function show(MedicineCategory $medichineCategory)
@@ -71,7 +68,7 @@ class MedicineCategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\MedicineCategory  $medichineCategory
+     * @param  \App\MedichineCategory  $medichineCategory
      * @return \Illuminate\Http\Response
      */
     public function edit(MedicineCategory $medichineCategory)
@@ -89,20 +86,17 @@ class MedicineCategoryController extends Controller
     public function update(Request $request, MedicineCategory $medichineCategory)
     {
         $medichineCategory->name= $request->name;
-        $medichineCategory->email = $request->email;
-    $medichineCategory->message = $request->message;
-    $medichineCategory->phone = $request->phone;
+        $medichineCategory->description = $request->description;
+        $medichineCategory->reaction = $request->reaction;
 
         $medichineCategory->save();
         return back();
     }
 
     /**
-     * 
-     * 
      * Remove the specified resource from storage.
      *
-     * @param  \App\MedicineCategory  $medichineCategory
+     * @param  \App\MedichineCategory  $medichineCategory
      * @return \Illuminate\Http\Response
      */
     public function destroy(MedicineCategory $medichineCategory)

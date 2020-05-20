@@ -17,7 +17,8 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('medicine-categories.store') }}">
+            <h1 class="text-center">Client Table</h1>
+                <form method="POST" action="{{ route('newfile.store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -30,11 +31,6 @@
                             <input type="text" name="email" size="55" class="form-control mb-2" id="inlineFormInput" required >
                         </div>
                        
-                        <div class="col-auto">
-
-                            <span class="text-dark pl-2">Message</span>
-                            <input type="text" name="message" size="55" class="form-control mb-2" id="inlineFormInput" required >
-                        </div>
 
                         <div class="col-auto">
 
@@ -73,7 +69,6 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Message</th>
                             <th>Phone</th>
 
                             <th>Action</th>
@@ -86,7 +81,6 @@
                             <th>#</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Message</th>
                             <th>Phone</th>
 
                              <th>Action</th>
@@ -97,14 +91,13 @@
                         <tbody>
 
                         <?php $i = 1; ?>
-                        @foreach ($categories as $category)
-                            <?php $id = $category->id; ?>
+                        @foreach ($clientmodel as $clientmodels)
+                            <?php $id = $clientmodels->id; ?>
                             <tr class="data-row">
                                 <td class="iteration">{{$i++}}</td>
-                                <td class="  word-break name">{{$category->name}}</td>
-                                <td class=" word-break email">{{$category->email}}</td>
-                                <td class=" word-break message">{{$category->message}}</td>
-                                <td class=" word-break phone">{{$category->phone}}</td>
+                                <td class="  word-break name">{{$clientmodels->name}}</td>
+                                <td class=" word-break email">{{$clientmodels->email}}</td>
+                                <td class=" word-break phone">{{$clientmodels->phone}}</td>
 
 
 
@@ -114,7 +107,7 @@
                                     <button type="button" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('medicine-categories.destroy',  $category->id )}} " id="delete-form-{{ $category->id }}" style="display:none; ">
+                                    <form method="POST" action="{{ route('newfile.destroy',  $clientmodels->id )}} " id="delete-form-{{ $clientmodels->id }}" style="display:none; ">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -123,7 +116,7 @@
 
 
                                     <button onclick="if(confirm('are you sure to delete this')){
-                                        document.getElementById('delete-form-{{ $category->id }}').submit();
+                                        document.getElementById('delete-form-{{ $clientmodels->id }}').submit();
                                         }
                                         else{
                                         event.preventDefault();
@@ -184,17 +177,14 @@
                             <input type="text" name="email" class="form-control" id="modal-input-email" required>
                         </div>
                            <!-- /email-->
-                           <!-- message -->
-                        <div class="form-group">
-                            <label class="col-form-label" for="modal-input-message">Message</label>
-                            <input type="text" name="message" class="form-control" id="modal-input-message" required>
-                        </div>
+                          <!--phone-->
 
                         <div class="col-auto">
                         <label class="col-form-label" for="modal-input-phone">Phone</label>
 
                             <input type="text" name="phone" size="55" class="form-control" id="modal-input-phone" required >
                         </div>
+                        <!--/phone-->
                         <div class="form-group">
 
                             <input type="submit" value="Update" class="form-control btn btn-success">
@@ -238,19 +228,17 @@ $(document).on('click', "#category-edit-item", function() {
     var id = el.data("item-id");
     var name = row.children(".name").text();
     var email = row.children(".email").text();
-    var message = row.children(".message").text();
     var phone = row.children(".phone").text();
 
 
 
-    var action= $("#indexLink").val()+'/medicine-categories/'+id;
+    var action= $("#indexLink").val()+'/newfile/'+id;
     $("#category-edit-form").attr('action',action);
 
     // fill the data in the input fields
     $("#modal-input-id").val(id);
     $("#modal-input-name").val(name);
     $("#modal-input-email").val(email);
-    $("#modal-input-message").val(message);
     $("#modal-input-phone").val(phone);
 
 

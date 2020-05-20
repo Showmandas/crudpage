@@ -20,6 +20,7 @@ Route::get("/", "UserController@index")->name('index');
 
 Route::resource('medicine-categories','MedicineCategoryController');
 Route::resource('medichines','MedicineController');
+Route::resource('newfile','clientController');
 
 
 
