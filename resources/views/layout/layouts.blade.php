@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="{{asset('/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('/css/bootstrap.css')}}">
    <link rel="stylesheet" href="{{asset('/js/fontawesome-free/css/all.min.css')}}">
-   <link href="{{asset('files/datatables/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 
 </head>
 <body>
@@ -19,7 +18,6 @@
     <script src="{{asset('files/jquery/jquery.min.js')}}"></script>
 
 
-    <script src="{{asset('files/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
 
 

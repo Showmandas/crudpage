@@ -13,7 +13,7 @@ class CreateCruddataTable extends Migration
      */
     public function up()
     {
-        Schema::create('Medicine_categories', function (Blueprint $table) {
+        Schema::create('cruddata', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->nullable();
             $table->string('email')->nullable();

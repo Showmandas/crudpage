@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Controller\Controller;
+namespace App\Http\Controllers;
 
 use App\MedicineCategory;
 use Illuminate\Http\Request;
@@ -16,7 +16,7 @@ class MedicineCategoryController extends Controller
     {
         $categories = MedicineCategory::all();
 
-       return view('medichine.crudpage',compact('categories'));
+       return view('layout.categories',compact('categories'));
 
     }
 

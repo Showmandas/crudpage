@@ -17,7 +17,7 @@
             </div>
 
             <div class="card-body">
-                <form method="POST" action="{{ route('medicine-categories.store') }}">
+                <form method="POST" action="{{ route('categories.store') }}">
                     @csrf
                     <div class="form-row align-items-center">
                         <div class="col-auto">
@@ -114,7 +114,7 @@
                                     <button type="button" class="btn btn-success" id="category-edit-item" data-item-id={{$id}}> <i class="fa fa-edit" aria-hidden="false"> </i></button>
 
 
-                                    <form method="POST" action="{{ route('medicine-categories.destroy',  $category->id )}} " id="delete-form-{{ $category->id }}" style="display:none; ">
+                                    <form method="POST" action="{{ route('categories.destroy',  $category->id )}} " id="delete-form-{{ $category->id }}" style="display:none; ">
                                         {{csrf_field() }}
                                         {{ method_field("delete") }}
                                     </form>
@@ -243,7 +243,7 @@ $(document).on('click', "#category-edit-item", function() {
 
 
 
-    var action= $("#indexLink").val()+'/medicine-categories/'+id;
+    var action= $("#indexLink").val()+'/categories/'+id;
     $("#category-edit-form").attr('action',action);
 
     // fill the data in the input fields
